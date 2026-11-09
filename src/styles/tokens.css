@@ -1,0 +1,23 @@
+/* Design tokens: the single source for colour, type, and spacing. */
+:root {
+  /* Colour */
+  --cream: #f2ecde;
+  --cream-deep: #e8e0cb;
+  --paper: #faf7f0;
+  --forest: #1e3b2c;
+  --ink: #14160f;
+  --stone: #67655a;
+  --line: #d8cfb8;
+  --cream-text-soft: rgba(242, 236, 222, 0.82);
+  --cream-line: rgba(242, 236, 222, 0.2);
+
+  /* Type */
+  --font-serif: 'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --font-sans: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Layout */
+  --max-width: 80rem;
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --section-space: clamp(5rem, 11vw, 9rem);
+  --radius: 1rem;
+}
