@@ -11,7 +11,7 @@ export function Contact({ contact }: ContactProps) {
     <section id="contact" className="contact on-dark" aria-labelledby="contact-title">
       <div className="container">
         <h2 id="contact-title" className="contact__title">
-          Start a project with Bloom.
+          Start a project with Brina.
         </h2>
         <p className="contact__text">
           Tell us about your business and what you want your website to do. We

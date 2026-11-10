@@ -1,5 +1,6 @@
 
 import DimensionalField from "./ui/dimensional-field";
+import { WordRotate } from "./ui/word-rotate";
 
 export function Hero() {
   return (
@@ -37,8 +38,18 @@ export function Hero() {
           </p>
 
           <p className="hero__lead">
-            Turning ideas into digital experiences.
+           Thoughtfully designed. Intentionally built.
           </p>
+
+                  <WordRotate
+          duration={3500}
+          className="hero__description-rotate"
+          words={[
+            "Turning ideas into digital\nexperiences.",
+            "Creating thoughtful and\ninterractive designs.",
+            "Building digital products\nwith purpose.",
+          ]}
+        />
 
         </div>
       </div>

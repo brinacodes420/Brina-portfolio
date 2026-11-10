@@ -1,8 +1,6 @@
-
-import { useState } from 'react'
+import PictureRailGallery from './ui/picture-rail-gallery'
+import type { PictureRailItem } from './ui/picture-rail-gallery'
 import { ActionLink } from './ActionLink'
-import { WheelCarousel } from './ui/wheel-carousel'
-import type { WheelCarouselItem } from './ui/wheel-carousel'
 import { webLink } from '../lib/links'
 import type { Project } from '../config/site'
 
@@ -11,15 +9,19 @@ interface WorkProps {
 }
 
 export function Work({ projects }: WorkProps) {
-  const [activeIndex, setActiveIndex] = useState(0)
-
-  const carouselItems: WheelCarouselItem[] = projects.map((project) => ({
-    label: project.name,
-    image: project.image || '',
-    imageAlt: `Preview of the ${project.name} website`,
-  }))
-
-  const selectedProject = projects[activeIndex]
+  const galleryItems: PictureRailItem[] = projects.map(
+    (project, index) => ({
+      id: `project-${index}`,
+      title: project.name,
+      image: project.image || '',
+      artist: project.role,
+      details: project.description
+        ? [project.description]
+        : [],
+      frame: 'black',
+      mat: false,
+    }),
+  )
 
   if (projects.length === 0) {
     return (
@@ -37,51 +39,42 @@ export function Work({ projects }: WorkProps) {
   return (
     <section id="work" className="work" aria-labelledby="work-title">
       <div className="container">
-        <h2 id="work-title" className="work__title">
-          Selected work
-        </h2>
+        <PictureRailGallery
+          items={galleryItems}
+          eyebrow="BRINA / SELECTED WORK"
+          heading="Selected work"
+          caption="A selection of digital experiences, thoughtful interfaces, and creative work."
+        />
 
-        <div className="work__carousel">
-          <WheelCarousel
-            items={carouselItems}
-            initialIndex={0}
-            mode="custom"
-            background="#050608"
-            panelColor="#111C19"
-            textColor="rgba(247, 245, 239, 0.45)"
-            selectedColor="#F7F5EF"
-            markerColor="#A6B5A0"
-            photoWidth={44}
-            photoAspect="3/4"
-            contentWidth={1100}
-            onActiveChange={(_, index) => setActiveIndex(index)}
-          />
-        </div>
-
-        {selectedProject && (
-          <div className="project__info" aria-live="polite">
-            <p className="project__number">
-              {String(activeIndex + 1).padStart(2, '0')} /{' '}
-              {String(projects.length).padStart(2, '0')}
-            </p>
-
-            <h3 className="project__name">{selectedProject.name}</h3>
-
-            <p className="project__description">
-              {selectedProject.description}
-            </p>
-
-            <p className="project__role">{selectedProject.role}</p>
-
-            <ActionLink
-              href={webLink(selectedProject.url)}
-              variant="text"
-              external
+        <div className="work__project-links">
+          {projects.map((project, index) => (
+            <article
+              className="project__info"
+              key={`${project.name}-${index}`}
             >
-              Visit live website
-            </ActionLink>
-          </div>
-        )}
+              <p className="project__number">
+                {String(index + 1).padStart(2, '0')} /{' '}
+                {String(projects.length).padStart(2, '0')}
+              </p>
+
+              <h3 className="project__name">{project.name}</h3>
+
+              <p className="project__description">
+                {project.description}
+              </p>
+
+              <p className="project__role">{project.role}</p>
+
+              <ActionLink
+                href={webLink(project.url)}
+                variant="text"
+                external
+              >
+                Visit live website
+              </ActionLink>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   )

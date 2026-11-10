@@ -1,0 +1,155 @@
+/* Brina theme layer for the original 21st.dev PictureRailGallery.
+   The component keeps its original Tailwind layout and physics; this file
+   supplies the Brina emerald / ivory palette and finishing details. */
+
+[data-slot="picture-rail-gallery"] {
+  --color-background: #071b15;
+  --color-foreground: #f4f0e5;
+  --color-card: #102a20;
+  --color-card-foreground: #f4f0e5;
+  --color-muted: #17382b;
+  --color-muted-foreground: #aab9ad;
+  --color-border: rgba(205, 224, 207, 0.18);
+  --color-ring: #55b887;
+  --color-chart-2: #65c995;
+
+  position: relative;
+  isolation: isolate;
+  color: var(--color-foreground);
+  background:
+    radial-gradient(
+      ellipse at 50% 38%,
+      rgba(32, 91, 64, 0.28),
+      transparent 62%
+    ),
+    #071b15;
+  border: 1px solid rgba(173, 211, 184, 0.12);
+  border-radius: 28px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.045),
+    0 24px 70px rgba(0, 0, 0, 0.16);
+}
+
+[data-slot="picture-rail-gallery"] > header {
+  padding-top: clamp(2rem, 5vw, 3.5rem);
+  gap: 0.8rem;
+}
+
+[data-slot="picture-rail-gallery"] > header p {
+  color: #8bc7a4;
+  letter-spacing: 0.3em;
+}
+
+[data-slot="picture-rail-gallery"] > header h2 {
+  max-width: 16ch;
+  color: #f4f0e5;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+[data-slot="picture-rail-gallery"] [data-stage] {
+  margin-top: clamp(1.5rem, 4vw, 2.75rem);
+  cursor: grab;
+}
+
+[data-slot="picture-rail-gallery"] [data-stage]:active {
+  cursor: grabbing;
+}
+
+[data-slot="picture-rail-gallery"] [data-rail] {
+  filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.24));
+}
+
+[data-slot="picture-rail-gallery"] [data-frame] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: pan-y;
+}
+
+[data-slot="picture-rail-gallery"] [data-frame]:focus-visible {
+  outline-color: #70d6a0;
+}
+
+[data-slot="picture-rail-gallery"] [data-label] {
+  border-color: rgba(180, 218, 190, 0.22);
+  background: #102a20;
+  color: #d9e7da;
+}
+
+[data-slot="picture-rail-gallery"] [data-wash] {
+  --wash: color-mix(in oklab, #72d69b 24%, transparent);
+}
+
+[data-slot="picture-rail-gallery"] [data-caption] {
+  color: #f4f0e5;
+}
+
+[data-slot="picture-rail-gallery"] [aria-live="polite"] p:first-child {
+  color: #f4f0e5;
+  font-size: clamp(0.95rem, 1.5vw, 1.08rem);
+  letter-spacing: 0.01em;
+}
+
+[data-slot="picture-rail-gallery"] [aria-live="polite"] p + p {
+  color: #aab9ad;
+}
+
+/* Carousel position indicators */
+[data-slot="picture-rail-gallery"] [aria-current="true"] {
+  background-color: #72d69b;
+}
+
+[data-slot="picture-rail-gallery"] [aria-current="false"] {
+  background-color: rgba(244, 240, 229, 0.28);
+}
+
+/* Expanded artwork detail */
+[data-figure] {
+  filter: drop-shadow(0 24px 38px rgba(0, 0, 0, 0.34));
+}
+
+[data-spin-area] {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+[role="dialog"][aria-modal="true"] {
+  background: rgba(4, 18, 13, 0.2);
+}
+
+[role="dialog"][aria-modal="true"] h3 {
+  color: #f4f0e5;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+[role="dialog"][aria-modal="true"] button:focus-visible {
+  outline-color: #70d6a0;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  [data-slot="picture-rail-gallery"] {
+    border-radius: 20px;
+  }
+
+  [data-slot="picture-rail-gallery"] > header {
+    padding-inline: 1.25rem;
+  }
+
+  [data-slot="picture-rail-gallery"] > header h2 {
+    font-size: clamp(1.65rem, 7vw, 2.15rem);
+  }
+
+  [data-slot="picture-rail-gallery"] [aria-live="polite"] {
+    max-width: 30rem;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  [data-slot="picture-rail-gallery"] *,
+  [role="dialog"][aria-modal="true"] * {
+    scroll-behavior: auto !important;
+  }
+}

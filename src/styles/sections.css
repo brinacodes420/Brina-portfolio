@@ -807,20 +807,36 @@
 /* Larger professional title */
 .hero__role {
   margin: 38px 0 0;
-  color: #f5f0e6;
-  font-size: clamp(4rem, 9vw, 6.4rem);
+  background: linear-gradient(
+    110deg,
+    #087F50 0%,
+    #20C982 30%,
+    #A0FFD0 50%,
+    #16A66A 75%,
+    #087F50 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 12px rgba(22, 166, 106, 0.2));
+
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 500;
-  letter-spacing: 0.02em;
-  line-height: 1.3;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  text-align: center;
 }
 
 /* Medium-sized description */
 .hero--field .hero__lead {
-  max-width: 30rem;
-  margin: 12px 0 0;
-  color: rgba(245, 240, 230, 0.78);
-  font-size: clamp(1rem, 1.5vw, 1.125rem);
-  line-height: 1.65;
+  max-width: 34rem;
+  margin: 24px 0 0;
+  color: rgba(245, 240, 230, 0.82);
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  font-weight: 400;
+  letter-spacing: 0.015em;
+  line-height: 1.5;
+  text-align: center;
 }
 
 @media (max-width: 56rem) {
@@ -837,19 +853,61 @@
     font-size: 1.9rem;
   }
 
-  .hero__role {
-    margin-top: 25px;
-    font-size: 1.4rem;
-  }
+.hero__role {
+  margin-top: 28px;
+  font-size: clamp(3rem, 9vw, 4rem);
+}
 
-  .hero--field .hero__lead {
-    font-size: 1rem;
-  }
+.hero--field .hero__lead {
+  font-size: clamp(1.05rem, 4vw, 1.3rem);
+  margin-top: 22px;
+}
 }
 
 
 @media (max-width: 380px) {
   .hero__inner {
     padding-bottom: 88px;
+  }
+}
+
+/* ---------- Brina rotating description ---------- */
+
+.hero__description-rotate {
+  max-width: 36rem;
+  min-height: 5rem;
+  margin: 0 auto;
+  padding-top: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: pre-line;
+  max-width: 36rem;
+  font-size: clamp(1.7rem, 5vw, 1.7rem);
+
+   /* Shiny emerald metallic text */
+  background: linear-gradient(
+    110deg,
+    #087F50 0%,
+    #20C982 25%,
+    #A0FFD0 48%,
+    #16A66A 68%,
+    #087F50 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  filter: drop-shadow(0 0 10px rgba(22, 166, 106, 0.18));
+}
+
+@media (max-width: 56rem) {
+  .hero__description-rotate {
+    max-width: 30rem;
+    min-height: 5rem;
+    padding-top: 50px;
+    font-size: clamp(1.7rem, 5vw, 1.7rem);
   }
 }
