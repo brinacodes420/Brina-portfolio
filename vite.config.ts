@@ -7,3 +7,6 @@ export default defineConfig({
   base: './',
   plugins: [react(), tailwindcss()],
 })
+server: {
+  allowedHosts: ['waggle-cannot-brethren.ngrok-free.dev']
+}
