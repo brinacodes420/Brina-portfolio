@@ -7,13 +7,6 @@ Built with React, TypeScript, and Vite. Three sections: hero, selected work, con
 
 Requires Node.js 20.19 or newer.
 
-```bash
-npm install
-npm run dev        # local dev server
-npm run build      # type-check, then production build into dist/
-npm run preview    # serve the production build locally
-```
-
 Upload the contents of `dist/` to any static host.
 
 ## Add your details (one file)
