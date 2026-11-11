@@ -9,23 +9,16 @@ export type PictureFrameStyle = "black" | "oak" | "white";
 
 export interface PictureRailItem {
   id: string;
-  /** Accessible name, caption and detail title. */
   title: string;
   artist?: string;
   year?: string;
-  /** Artwork shown behind the glass. */
   image: string;
-  /** Width ÷ height of the artwork. Defaults to 0.8 (a 4:5 portrait). */
+  url?: string;
   aspect?: number;
-  /** Frame moulding. Defaults to "black". */
   frame?: PictureFrameStyle;
-  /** Adds a bevel-cut mat board around the artwork. */
   mat?: boolean;
-  /** Extra wire length in frame units (about -0.1 to 0.3). At 0 every frame hangs on one centre line. */
   drop?: number;
-  /** Short wall-label text such as a price. */
   tag?: string;
-  /** Lines printed on the gallery label on the back: edition, size, medium… */
   details?: string[];
 }
 
@@ -789,6 +782,18 @@ export function PictureRailGallery({
                   {item.tag}
                 </span>
               )}
+              {item.url && (
+        <a
+          href={item.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`View ${item.title} live website`}
+          className="pointer-events-auto absolute right-0 whitespace-nowrap text-[10px] font-semibold tracking-[0.16em] text-[#e8dfc9] transition-colors duration-200 hover:text-[#c6a96b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+          style={{ top: top + h + 12 }}
+        >
+          VIEW PROJECT ↗
+        </a>
+      )}
               <span ref={(node) => { swings.current[i] = node; }} data-swing className="absolute left-0 top-0" style={{ width: w, height: 0, transformOrigin: `${w / 2}px ${layout.pivotY + 1}px`, visibility: lifted === i ? "hidden" : undefined }}>
                 <svg aria-hidden="true" className="pointer-events-none absolute left-0 top-0 overflow-visible text-foreground" width={Math.max(1, w)} height={Math.max(1, ringY)}>
                   {[w * 0.2, w * 0.8].map((rx) => (
@@ -831,7 +836,6 @@ export function PictureRailGallery({
           );
         })}
       </div>
-
       {layout.carousel && count > 1 && (
         <div className="relative z-10 mt-1 flex justify-center gap-1.5" role="group" aria-label={heading ?? "Prints"}>
           {items.map((item, i) => (
